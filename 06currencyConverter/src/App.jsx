@@ -8,7 +8,7 @@ function App() {
   const [amount,setAmount]=useState()
   const [from,setFrom]=useState("usd")
   const [to,setTo]=useState("inr")
-  const[convertedAmount,setConvertedAmount]=useState()
+  const[convertedAmount,setConvertedAmount]=useState(0)
 
   const currencyInfo=useCurrencyInfo(from)
 
@@ -18,21 +18,21 @@ function App() {
   const swap=()=>{
     setFrom(to)
     setTo(from)
-    setConvertedAmount(amount)
     setAmount(convertedAmount)
+    setConvertedAmount(amount)
   }
 
   const convert=()=>{
-    setConvertedAmount(amount* currencyInfo[to])
+    setConvertedAmount((amount* currencyInfo[to]).toFixed(2));
   } 
   
 
   return (
    
     <div
-        className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
+        className="w-full h-screen flex flex-wrap justify-center items-center bg-contain bg-center "
         style={{
-            backgroundImage: `url(https://images.pexels.com/photos/633409/pexels-photo-633409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
+            backgroundImage: `url('https://cdn.pixabay.com/photo/2022/09/08/12/56/neon-7440942_960_720.png')`,
         }}
     >
         <div className="w-full">
@@ -48,9 +48,10 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency)=>{setAmount(amount)}}
+                            onCurrencyChange={(currency)=>{setFrom(currency)}}
                             selectCurrency={from}
                             onAmountChange={(amount)=> setAmount(amount)} 
+                            
                         />
                     </div>
                     <div className="relative w-full h-0.5">
@@ -69,7 +70,7 @@ function App() {
                             amount={convertedAmount}
                             currencyOptions={options}
                             onCurrencyChange={(currency)=>setTo(currency)}
-                            selectCurrency={from} 
+                            selectCurrency={to} 
                             amountDisable
                         />
                     </div>
