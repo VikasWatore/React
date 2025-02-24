@@ -7,7 +7,7 @@ function App() {
   
  let [counter, setCounter] = useState(0) 
   /**
-   * as we have seen abaove that although the variable values are increased but it was not shown on the outputScreen 
+   * as we have seen above that although the variable values are increased but it was not shown on the outputScreen 
    * does to show that on outputscreen we use react Hooks
   */
   // let counter=5
